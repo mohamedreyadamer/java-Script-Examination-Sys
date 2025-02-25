@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Examination App</title>
+    <link rel="stylesheet" href="Style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Examination System</h1>
+      </header>
+
+      <div class="question-info">
+        <div class="category">
+          Category: <span id="category">أسئله عامه</span>
+        </div>
+        <div class="count">Questions: <span id="question-count">10</span></div>
+      </div>
+
+      <div class="answer-info" id="question-container"></div>
+      <div class="btn">
+        <button class="submit-btn" id="next-btn" style="display: none">
+          Next
+        </button>
+      </div>
+
+      <div class="bullets">
+        <div class="spans" id="bullets-container"></div>
+        <div class="timer" id="timer">00:30</div>
+      </div>
+
+      <div class="result" id="result-container"></div>
+    </div>
+
+    <script
+      type="module"
+      src="
+    main.js"
+    ></script>
+  </body>
+</html>
