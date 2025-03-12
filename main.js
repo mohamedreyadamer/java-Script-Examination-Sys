@@ -45,10 +45,10 @@ const questions = [
 
 ];
 
-const exam = teacher.createExam("HTML Exam", questions);
+const exam = teacher.createExam("E Exam", questions);
 const student = new Student(101, "Ali");
 
-
+//select elm
 const questionContainer = document.getElementById("question-container");
 const nextBtn = document.getElementById("next-btn");
 const bulletsContainer = document.getElementById("bullets-container");
@@ -100,6 +100,9 @@ function startTimer(seconds) {
 		}
 	}, 1000);
 }
+function updateTimer(time) {
+	timerElement.textContent = `00:${String(time).padStart(2, "0")}`;
+}
 
 function nextQuestion() {
 	const selected = document.querySelector("input[name='question']:checked");
@@ -119,9 +122,7 @@ function nextQuestion() {
 }
 
 
-function updateTimer(time) {
-	timerElement.textContent = `00:${String(time).padStart(2, "0")}`;
-}
+
 
 
 questionContainer.addEventListener("change", () => {
@@ -150,9 +151,40 @@ function updateBullets() {
 }
 
 
+// function showResult() {
+// 	resultContainer.innerHTML = `<span>You answered ${exam.score} out of ${questions.length} correctly!</span>`;
+// }
 function showResult() {
-	resultContainer.innerHTML = `<span>You answered ${exam.score} out of ${questions.length} correctly!</span>`;
+	nextBtn.style.display = "none";
+	// percentage
+	const scorePercentage = (exam.score / questions.length) * 100;
+
+	resultContainer.innerHTML = `
+        <canvas id="resultCanvas" width="150" height="150"></canvas>
+        <p>${scorePercentage.toFixed(1)}% Correct</p>
+    `;
+
+	const canvas = document.getElementById("resultCanvas");
+	const ctx = canvas.getContext("2d");
+	const radius = 60;
+	const center = 75;
+	// Convert percentage
+	const endAngle = (scorePercentage / 100) * 2 * Math.PI;
+
+	// background circle
+	ctx.strokeStyle = "#ddd";
+	ctx.lineWidth = 10;
+	ctx.beginPath();
+	ctx.arc(center, center, radius, 0, 2 * Math.PI);
+	ctx.stroke();
+
+	//  progress circle in green
+	ctx.strokeStyle = "#4CAF50";
+	ctx.beginPath();
+	ctx.arc(center, center, radius, -0.5 * Math.PI, endAngle - 0.5 * Math.PI);
+	ctx.stroke();
 }
+
 
 
 loadQuestion();

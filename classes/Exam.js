@@ -2,6 +2,7 @@ export class Exam {
 	constructor(title, questions) {
 		this.title = title;
 		this.questions = questions;
+		//counter
 		this.currentIndex = 0;
 		this.score = 0;
 	}
